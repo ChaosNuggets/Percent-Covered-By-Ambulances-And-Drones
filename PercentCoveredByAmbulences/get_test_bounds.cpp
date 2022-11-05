@@ -44,8 +44,8 @@ std::pair<Index, Index> getTestIndexBounds(const Point& stationCoordinate, const
     const auto [lowCorner, highCorner] = getTestCoordinateBounds(stationCoordinate, boxRadius);
 
     //Calculate the index bounds
-    auto [lowLat, lowLong] = coordToIndex(lowCorner, ceil);
-    auto [highLat, highLong] = coordToIndex(highCorner, floor);
+    auto [lowLat, lowLong] = coordToIndex(lowCorner, floor);
+    auto [highLat, highLong] = coordToIndex(highCorner, ceil);
 
     // Don't test indexes that are out of bounds of the points matrix
     if (lowLat < 0) lowLat = 0;

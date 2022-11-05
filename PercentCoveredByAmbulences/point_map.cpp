@@ -21,7 +21,9 @@ Index coordToIndex(const Point& coordinate, funcPtr roundFunc)
 
     // Calculate the coordinate's difference in miles from LOWEST_LAT and LOWEST_LONG
     const double latMileDifference = (latitude - LOWEST_LAT) / LAT_IN_1_MILE;
-    const double longMileDifference = calculateDistance({ latitude, LOWEST_LONG }, {latitude, longitude});
+    double longMileDifference = calculateDistance({ latitude, LOWEST_LONG }, {latitude, longitude});
+
+    if (longitude < LOWEST_LONG) longMileDifference *= -1;
 
     // Round the difference so it's an integer
     int latIndex = roundFunc(latMileDifference / MILES_BETWEEN_POINTS); // Also why is round not constexpr aaaaa

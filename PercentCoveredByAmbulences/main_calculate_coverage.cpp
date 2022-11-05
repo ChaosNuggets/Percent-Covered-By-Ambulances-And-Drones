@@ -2,6 +2,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <fstream>
+#include <sstream>
 #include "station_coordinates.h"
 #include "get_test_bounds.h"
 #include "constants.h"
@@ -31,13 +33,28 @@ static void changePointsAmbulance(const int stationNum)
 
             if (checkIfInside(isochrones[stationNum], testPoint))
             {
-                points[i][j] = COVERED_BY_AMBULANCE;
+                if (points[i][j] == COVERED_BY_DRONE)
+                {
+                    points[i][j] = COVERED_BY_BOTH;
+                }
+                else if (points[i][j] == NOT_COVERED)
+                {
+                    points[i][j] = COVERED_BY_AMBULANCE;
+                }
             }
         }
     }
 }
 
-static void changePointsDrone(int stationNum, double droneBoxRadius)
+static void changePointsAmbulance()
+{
+    for (int i = 0; i < stationCoordinates.size(); i++)
+    {
+        changePointsAmbulance(i);
+    }
+}
+
+static void changePointsDrone(const int stationNum, const double droneBoxRadius)
 {
     // Extract the indexes of the box corners
     const auto [lowCorner, highCorner] = getTestIndexBounds(stationCoordinates[stationNum], droneBoxRadius);
@@ -62,12 +79,22 @@ static void changePointsDrone(int stationNum, double droneBoxRadius)
                 {
                     points[i][j] = COVERED_BY_BOTH;
                 }
-                else
+                else if (points[i][j] == NOT_COVERED)
                 {
                     points[i][j] = COVERED_BY_DRONE;
                 }
             }
         }
+    }
+}
+
+static void changePointsDrone(const double droneSpeed)
+{
+    double droneBoxRadius = droneSpeed * (MAX_TIME / MINUTES_IN_1_HOUR);
+
+    for (int i = 0; i < stationCoordinates.size(); i++)
+    {
+        changePointsDrone(i, droneBoxRadius);
     }
 }
 
@@ -104,27 +131,43 @@ static std::tuple<long double, int, int> calculateCoverage()
     return { coverage, pointsCovered, pointsTotal };
 }
 
-int main()
+static void printCoverage(const double droneSpeed, const long double coverage, const int pointsCovered, const int pointsTotal)
 {
-    extractPolygons();
-    removeConcaveCorners(isochrones);
-
-    double droneSpeed = 70; // Drone speed in mph
-    double droneBoxRadius = droneSpeed * (MAX_TIME / MINUTES_IN_1_HOUR);
-
-    fillPoints();
-
-    for (int i = 0; i < stationCoordinates.size(); i++)
-    {
-        changePointsAmbulance(i);
-        changePointsDrone(i, droneBoxRadius);
-	}
-    // Calculate and print coverage
-    auto [coverage, pointsCovered, pointsTotal] = calculateCoverage();
     std::cout << std::setprecision(10);
-    std::cout << "Coverage: " << coverage * 100 << "% (" << pointsCovered << '/' << pointsTotal << ")\n";
+    std::cout << droneSpeed << " mph ";
+    std::cout << "Coverage: " << coverage * 100 << '%';
+    std::cout << " (" << pointsCovered << '/' << pointsTotal << ')';
+    std::cout << '\n';
+}
 
-    // Print Indiana point map
+static std::string generateFilePath(const int droneSpeed)
+{
+    return "Points/" + std::to_string(droneSpeed) + "mph.csv";
+}
+
+static void writePoints(const double droneSpeed)
+{
+    std::ofstream fout(generateFilePath(round(droneSpeed)));
+    // Write the header
+    fout << "Latitude,Longitude,Value\n";
+    
+    fout << std::setprecision(8);
+    for (int i = 0; i < points.size(); i++)
+    {
+        for (int j = 0; j < points[i].size(); j++)
+        {
+            if (points[i][j] == OUTSIDE) continue;
+
+            Point point = indexToCoord({ i, j });
+            fout << point.lat << ',' << point.lon << ',' << (int) points[i][j] << '\n';
+        }
+    }
+
+    fout.close();
+}
+
+static void printPointMap()
+{
     for (int i = points.size() - 1; i >= 0; i--)
     {
         for (uint8_t point : points[i])
@@ -152,8 +195,24 @@ int main()
         }
         std::cout << '\n';
     }
+}
 
-    std::cout << "Press enter to exit";
-    std::cin.ignore();
+int main()
+{
+    extractPolygons();
+    removeConcaveCorners(isochrones);
+    fillPoints();
+
+    changePointsAmbulance();
+
+    // Drone speed is in mph
+    for (double droneSpeed = 0; droneSpeed <= 200; droneSpeed += 5)
+    {
+        changePointsDrone(droneSpeed);
+        const auto [coverage, pointsCovered, pointsTotal] = calculateCoverage();
+        printCoverage(droneSpeed, coverage, pointsCovered, pointsTotal);
+        writePoints(droneSpeed);
+    }
+
     return 0;
 }
