@@ -16,6 +16,8 @@ void fillPoints();
 
 const extern int OUTSIDE;
 const extern int NOT_COVERED;
-const extern int COVERED;
+const extern int COVERED_BY_AMBULANCE;
+const extern int COVERED_BY_DRONE;
+const extern int COVERED_BY_BOTH;
 
 #endif

@@ -45,9 +45,6 @@
     <ClCompile Include="calculate_distance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="check_if_inside.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

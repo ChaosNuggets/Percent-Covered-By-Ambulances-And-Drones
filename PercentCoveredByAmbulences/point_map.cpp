@@ -11,7 +11,9 @@ std::vector<std::vector<uint8_t>> points; // The point map, true if active and f
 // What a value represents in the point map
 const int OUTSIDE = 0;
 const int NOT_COVERED = 1;
-const int COVERED = 2;
+const int COVERED_BY_AMBULANCE = 2;
+const int COVERED_BY_DRONE = 3;
+const int COVERED_BY_BOTH = 4;
 
 Index coordToIndex(const Point& coordinate, funcPtr roundFunc)
 {

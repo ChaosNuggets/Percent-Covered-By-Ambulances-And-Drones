@@ -2,7 +2,8 @@
 #define CALCULATE_DISTANCE_H
 
 #include <utility>
+#include "point.h"
 
-long double calculateDistance(const std::pair<long double, long double>& coord1, const std::pair<long double, long double>& coord2);
+long double calculateDistance(const Point& coord1, const Point& coord2);
 
 #endif

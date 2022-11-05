@@ -149,7 +149,6 @@
     <ClCompile Include="extract_polygons.cpp" />
     <ClCompile Include="main_calculate_coverage.cpp" />
     <ClCompile Include="calculate_distance.cpp" />
-    <ClCompile Include="main_test.cpp" />
     <ClCompile Include="check_if_inside.cpp" />
     <ClCompile Include="remove_concave_corners.cpp" />
     <ClCompile Include="station_coordinates.cpp" />

@@ -7,7 +7,7 @@
 // C++ program to calculate Distance
 // Between Two Points on Earth
 
-long double calculateDistance(const std::pair<long double, long double>& coord1, const std::pair<long double, long double>& coord2)
+static long double calculateDistanceL(const std::pair<long double, long double>& coord1, const std::pair<long double, long double>& coord2)
 {
 	// Extract data
 	auto [lat1, long1] = coord1;
@@ -39,6 +39,11 @@ long double calculateDistance(const std::pair<long double, long double>& coord1,
 	ans = ans * R;
 
 	return ans;
+}
+
+long double calculateDistance(const Point& coord1, const Point& coord2)
+{
+	return calculateDistanceL({ coord1.lat, coord1.lon }, { coord2.lat, coord2.lon });
 }
 
 // This code was written
