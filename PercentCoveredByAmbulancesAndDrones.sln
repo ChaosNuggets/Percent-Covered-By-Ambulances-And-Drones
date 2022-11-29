@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PercentCoveredByAmbulences", "PercentCoveredByAmbulences\PercentCoveredByAmbulences.vcxproj", "{552EC9CE-BD5B-44D2-99D3-29BE18D7C779}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PercentCoveredByAmbulancesAndDrones", "PercentCoveredByAmbulancesAndDrones\PercentCoveredByAmbulancesAndDrones.vcxproj", "{552EC9CE-BD5B-44D2-99D3-29BE18D7C779}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
