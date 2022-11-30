@@ -11,6 +11,7 @@
 #include "check_if_inside.h"
 #include "remove_concave_corners.h"
 #include "calculate_distance.h"
+#include <cmath>
 
 static void changePointsAmbulance(const int stationNum)
 {

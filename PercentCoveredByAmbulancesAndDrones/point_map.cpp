@@ -5,6 +5,7 @@
 #include "calculate_distance.h"
 #include "check_if_inside.h"
 #include <cmath>
+#include <stdint.h>
 
 std::vector<std::vector<uint8_t>> points; // The point map, true if active and false if not active (all the points in Indiana start as true)
 

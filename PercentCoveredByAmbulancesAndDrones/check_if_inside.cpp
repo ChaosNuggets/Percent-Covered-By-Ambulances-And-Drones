@@ -1,7 +1,7 @@
 #include "check_if_inside.h"
 #include <algorithm>
 
-static struct Line {
+struct Line {
 	Point p1, p2;
 };
 
