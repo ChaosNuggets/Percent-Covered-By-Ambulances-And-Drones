@@ -47,7 +47,7 @@ std::pair<Index, Index> getTestIndexBounds(const Point& stationCoordinate, const
     auto [lowLat, lowLong] = coordToIndex(lowCorner, floor);
     auto [highLat, highLong] = coordToIndex(highCorner, ceil);
 
-    // Don't test indexes that are out of bounds of the points matrix
+    // Don't test indexes that are out of bounds of the pointMap matrix
     if (lowLat < 0) lowLat = 0;
     if (lowLong < 0) lowLong = 0;
     if (highLat >= LAT_SIZE) highLat = LAT_SIZE - 1;

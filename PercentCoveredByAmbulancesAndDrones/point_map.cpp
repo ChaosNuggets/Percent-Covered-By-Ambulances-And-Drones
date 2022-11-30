@@ -7,7 +7,7 @@
 #include <cmath>
 #include <stdint.h>
 
-std::vector<std::vector<uint8_t>> points; // The point map, true if active and false if not active (all the points in Indiana start as true)
+std::vector<std::vector<uint8_t>> pointMap; // The point map, true if active and false if not active (all the points in Indiana start as true)
 
 // What a value represents in the point map
 const int OUTSIDE = 0;
@@ -53,10 +53,10 @@ Point indexToCoord(const Index& index)
     return { latitude, longitude };
 }
 
-void fillPoints()
+void fillPointMap()
 {
-    // Resizes points to be a 2d matrix of points of size latSize by longSize
-    points.resize(LAT_SIZE, std::vector<uint8_t>(LONG_SIZE, OUTSIDE));
+    // Resizes pointMap to be a 2d matrix of points of size latSize by longSize
+    pointMap.resize(LAT_SIZE, std::vector<uint8_t>(LONG_SIZE, OUTSIDE));
 
     // These are the coordinates of vertexes of the polygon that make up the Indiana border
     const Polygon indianaBorder =
@@ -83,7 +83,7 @@ void fillPoints()
         {39.371112, -87.531690}
     };
     
-    // Fill the points to be spaced less than MILES_BETWEEN_POINTS apart
+    // Fill the points in pointMap to be spaced less than MILES_BETWEEN_POINTS apart
     for (int i = 0; i < LAT_SIZE; i++)
     {
         for (int j = 0; j < LONG_SIZE; j++)
@@ -92,7 +92,7 @@ void fillPoints()
             const Point p = indexToCoord({i, j});
             if (checkIfInside(indianaBorder, p))
             {
-                points[i][j] = NOT_COVERED;
+                pointMap[i][j] = NOT_COVERED;
             }
         }
     }

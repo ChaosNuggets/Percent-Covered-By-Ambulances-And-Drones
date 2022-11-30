@@ -24,7 +24,7 @@ static void changePointsAmbulance(const int stationNum)
     {
         for (int j = lowLongIndex; j <= highLongIndex; j++)
         {
-            if (points[i][j] == OUTSIDE)
+            if (pointMap[i][j] == OUTSIDE)
             {
                 continue;
             }
@@ -33,13 +33,13 @@ static void changePointsAmbulance(const int stationNum)
 
             if (checkIfInside(isochrones[stationNum], testPoint))
             {
-                if (points[i][j] == COVERED_BY_DRONE)
+                if (pointMap[i][j] == COVERED_BY_DRONE)
                 {
-                    points[i][j] = COVERED_BY_BOTH;
+                    pointMap[i][j] = COVERED_BY_BOTH;
                 }
-                else if (points[i][j] == NOT_COVERED)
+                else if (pointMap[i][j] == NOT_COVERED)
                 {
-                    points[i][j] = COVERED_BY_AMBULANCE;
+                    pointMap[i][j] = COVERED_BY_AMBULANCE;
                 }
             }
         }
@@ -65,7 +65,7 @@ static void changePointsDrone(const int stationNum, const double droneBoxRadius)
     {
         for (int j = lowLongIndex; j <= highLongIndex; j++)
         {
-            if (points[i][j] == OUTSIDE)
+            if (pointMap[i][j] == OUTSIDE)
             {
                 continue;
             }
@@ -75,13 +75,13 @@ static void changePointsDrone(const int stationNum, const double droneBoxRadius)
 
             if (distance <= droneBoxRadius)
             {
-                if (points[i][j] == COVERED_BY_AMBULANCE)
+                if (pointMap[i][j] == COVERED_BY_AMBULANCE)
                 {
-                    points[i][j] = COVERED_BY_BOTH;
+                    pointMap[i][j] = COVERED_BY_BOTH;
                 }
-                else if (points[i][j] == NOT_COVERED)
+                else if (pointMap[i][j] == NOT_COVERED)
                 {
-                    points[i][j] = COVERED_BY_DRONE;
+                    pointMap[i][j] = COVERED_BY_DRONE;
                 }
             }
         }
@@ -106,21 +106,21 @@ static std::tuple<long double, int, int> calculateCoverage()
     {
         for (int j = 0; j < LONG_SIZE; j++)
         {
-            if (points[i][j] == NOT_COVERED)
+            if (pointMap[i][j] == NOT_COVERED)
             {
                 pointsTotal++;
             }
-            else if (points[i][j] == COVERED_BY_DRONE)
-            {
-                pointsCovered++;
-                pointsTotal++;
-            }
-            else if (points[i][j] == COVERED_BY_BOTH)
+            else if (pointMap[i][j] == COVERED_BY_DRONE)
             {
                 pointsCovered++;
                 pointsTotal++;
             }
-            else if (points[i][j] == COVERED_BY_AMBULANCE)
+            else if (pointMap[i][j] == COVERED_BY_BOTH)
+            {
+                pointsCovered++;
+                pointsTotal++;
+            }
+            else if (pointMap[i][j] == COVERED_BY_AMBULANCE)
             {
                 pointsCovered++;
                 pointsTotal++;
@@ -152,14 +152,14 @@ static void writePoints(const double droneSpeed)
     fout << "Latitude,Longitude,Value\n";
     
     fout << std::setprecision(8);
-    for (int i = 0; i < points.size(); i++)
+    for (int i = 0; i < pointMap.size(); i++)
     {
-        for (int j = 0; j < points[i].size(); j++)
+        for (int j = 0; j < pointMap[i].size(); j++)
         {
-            if (points[i][j] == OUTSIDE) continue;
+            if (pointMap[i][j] == OUTSIDE) continue;
 
             Point point = indexToCoord({ i, j });
-            fout << point.lat << ',' << point.lon << ',' << (int) points[i][j] << '\n';
+            fout << point.lat << ',' << point.lon << ',' << (int) pointMap[i][j] << '\n';
         }
     }
 
@@ -168,9 +168,9 @@ static void writePoints(const double droneSpeed)
 
 static void printPointMap()
 {
-    for (int i = points.size() - 1; i >= 0; i--)
+    for (int i = pointMap.size() - 1; i >= 0; i--)
     {
-        for (uint8_t point : points[i])
+        for (uint8_t point : pointMap[i])
         {
             if (point == NOT_COVERED)
             {
@@ -201,7 +201,7 @@ int main()
 {
     extractPolygons();
     removeConcaveCorners(isochrones);
-    fillPoints();
+    fillPointMap();
 
     changePointsAmbulance();
 
