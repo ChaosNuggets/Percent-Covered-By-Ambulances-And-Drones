@@ -3,8 +3,8 @@
 
 #include <utility>
 #include <vector>
-#include "point.h"
-#include "index.h"
+#include "Structs/point.h"
+#include "Structs/index.h"
 
 typedef double (*funcPtr)(double);
 

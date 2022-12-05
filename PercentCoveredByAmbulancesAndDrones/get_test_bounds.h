@@ -2,8 +2,8 @@
 #define GET_TEST_BOUNDS_H
 
 #include <utility>
-#include "point.h"
-#include "index.h"
+#include "Structs/point.h"
+#include "Structs/index.h"
 
 double calcCoordLong(const Point& coordinate, const double distance);
 constexpr double calcCoordLat(const Point& coordinate, const double distance);

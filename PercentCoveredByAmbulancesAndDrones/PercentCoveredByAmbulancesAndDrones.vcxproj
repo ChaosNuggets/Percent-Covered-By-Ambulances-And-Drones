@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="check_if_inside.cpp" />
     <ClCompile Include="get_api_data.cpp" />
     <ClCompile Include="main_clean_isochrones.cpp" />
     <ClCompile Include="point_map.cpp" />
@@ -149,22 +150,21 @@
     <ClCompile Include="extract_polygons.cpp" />
     <ClCompile Include="main_calculate_coverage.cpp" />
     <ClCompile Include="calculate_distance.cpp" />
-    <ClCompile Include="check_if_inside.cpp" />
     <ClCompile Include="remove_concave_corners.cpp" />
     <ClCompile Include="station_coordinates.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="check_if_inside.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="get_api_data.h" />
     <ClInclude Include="get_test_bounds.h" />
     <ClInclude Include="angle_conversions.h" />
     <ClInclude Include="calculate_distance.h" />
-    <ClInclude Include="check_if_inside.h" />
     <ClInclude Include="extract_polygons.h" />
-    <ClInclude Include="polygon.h" />
-    <ClInclude Include="index.h" />
-    <ClInclude Include="point.h" />
     <ClInclude Include="remove_concave_corners.h" />
+    <ClInclude Include="Structs\polygon.h" />
+    <ClInclude Include="Structs\index.h" />
+    <ClInclude Include="Structs\point.h" />
     <ClInclude Include="station_coordinates.h" />
     <ClInclude Include="point_map.h" />
   </ItemGroup>

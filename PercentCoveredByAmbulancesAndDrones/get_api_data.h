@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include "point.h"
+#include "Structs/point.h"
 
 void promptForAPIKey(std::string& apiKey);
 std::string generateURL(const Point& coordinate, const int maxTime, const std::string& apiKey);

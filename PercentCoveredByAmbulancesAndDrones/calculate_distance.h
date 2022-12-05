@@ -2,7 +2,7 @@
 #define CALCULATE_DISTANCE_H
 
 #include <utility>
-#include "point.h"
+#include "Structs/point.h"
 
 long double calculateDistance(const Point& coord1, const Point& coord2);
 

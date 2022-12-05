@@ -45,13 +45,19 @@
     <ClCompile Include="calculate_distance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="main_clean_isochrones.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MathStuff\PolygonAlgos\check_if_inside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MathStuff\PolygonAlgos\remove_concave_corners.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="check_if_inside.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="remove_concave_corners.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main_clean_isochrones.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,19 +83,25 @@
     <ClInclude Include="calculate_distance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="check_if_inside.h">
+    <ClInclude Include="Structs\point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="point.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="index.h">
+    <ClInclude Include="Structs\index.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="extract_polygons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="polygon.h">
+    <ClInclude Include="Structs\polygon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MathStuff\PolygonAlgos\check_if_inside.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MathStuff\PolygonAlgos\remove_concave_corners.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="check_if_inside.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="remove_concave_corners.h">
