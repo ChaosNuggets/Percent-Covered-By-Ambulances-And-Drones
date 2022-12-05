@@ -13,7 +13,7 @@
 #include "calculate_distance.h"
 #include <cmath>
 
-static void changePointsAmbulance(const int stationNum)
+static void changeAmbulancePoints(const int stationNum)
 {
     // Extract the indexes of the box corners
     const auto [lowCorner, highCorner] = getTestIndexBounds(stationCoordinates[stationNum], AMBULANCE_BOX_RADIUS);
@@ -46,15 +46,15 @@ static void changePointsAmbulance(const int stationNum)
     }
 }
 
-static void changePointsAmbulance()
+static void changeAmbulancePoints()
 {
     for (int i = 0; i < stationCoordinates.size(); i++)
     {
-        changePointsAmbulance(i);
+        changeAmbulancePoints(i);
     }
 }
 
-static void changePointsDrone(const int stationNum, const double droneBoxRadius)
+static void changeDronePoints(const int stationNum, const double droneBoxRadius)
 {
     // Extract the indexes of the box corners
     const auto [lowCorner, highCorner] = getTestIndexBounds(stationCoordinates[stationNum], droneBoxRadius);
@@ -88,13 +88,13 @@ static void changePointsDrone(const int stationNum, const double droneBoxRadius)
     }
 }
 
-static void changePointsDrone(const double droneSpeed)
+static void changeDronePoints(const double droneSpeed)
 {
     double droneBoxRadius = droneSpeed * (MAX_TIME / MINUTES_IN_1_HOUR);
 
     for (int i = 0; i < stationCoordinates.size(); i++)
     {
-        changePointsDrone(i, droneBoxRadius);
+        changeDronePoints(i, droneBoxRadius);
     }
 }
 
@@ -145,7 +145,7 @@ static std::string generateFilePath(const int droneSpeed)
     return "Points/" + std::to_string(droneSpeed) + "mph.csv";
 }
 
-static void writePoints(const double droneSpeed)
+static void savePoints(const double droneSpeed)
 {
     std::ofstream fout(generateFilePath(round(droneSpeed)));
     // Write the header
@@ -203,15 +203,15 @@ int main()
     removeConcaveCorners(isochrones);
     fillPointMap();
 
-    changePointsAmbulance();
+    changeAmbulancePoints();
 
     // Drone speed is in mph
     for (double droneSpeed = 0; droneSpeed <= 200; droneSpeed += 5)
     {
-        changePointsDrone(droneSpeed);
+        changeDronePoints(droneSpeed);
         const auto [coverage, pointsCovered, pointsTotal] = calculateCoverage();
         printCoverage(droneSpeed, coverage, pointsCovered, pointsTotal);
-        writePoints(droneSpeed);
+        savePoints(droneSpeed);
     }
 
     return 0;
