@@ -3,14 +3,14 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
-#include "station_coordinates.h"
-#include "get_test_bounds.h"
-#include "constants.h"
-#include "point_map.h"
-#include "extract_polygons.h"
-#include "check_if_inside.h"
-#include "remove_concave_corners.h"
-#include "calculate_distance.h"
+#include "Include/station_coordinates.h"
+#include "Include/get_test_bounds.h"
+#include "Include/constants.h"
+#include "Include/point_map.h"
+#include "Include/extract_polygons.h"
+#include "Include/check_if_inside.h"
+#include "Include/remove_concave_corners.h"
+#include "Include/calculate_distance.h"
 #include <cmath>
 
 static void changeAmbulancePoints(const int stationNum)
@@ -211,7 +211,7 @@ int main()
         changeDronePoints(droneSpeed);
         const auto [coverage, pointsCovered, pointsTotal] = calculateCoverage();
         printCoverage(droneSpeed, coverage, pointsCovered, pointsTotal);
-        //savePoints(droneSpeed);
+        savePoints(droneSpeed);
     }
 
     return 0;

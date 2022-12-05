@@ -139,34 +139,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="check_if_inside.cpp" />
-    <ClCompile Include="get_api_data.cpp" />
-    <ClCompile Include="main_clean_isochrones.cpp" />
-    <ClCompile Include="point_map.cpp" />
-    <ClCompile Include="constants.cpp" />
-    <ClCompile Include="main_download_data.cpp" />
-    <ClCompile Include="get_test_bounds.cpp" />
-    <ClCompile Include="angle_conversions.cpp" />
-    <ClCompile Include="extract_polygons.cpp" />
-    <ClCompile Include="main_calculate_coverage.cpp" />
-    <ClCompile Include="calculate_distance.cpp" />
-    <ClCompile Include="remove_concave_corners.cpp" />
-    <ClCompile Include="station_coordinates.cpp" />
+    <ClCompile Include="Code\Include\check_if_inside.cpp" />
+    <ClCompile Include="Code\Include\get_api_data.cpp" />
+    <ClCompile Include="Code\clean_isochrones.cpp" />
+    <ClCompile Include="Code\Include\point_map.cpp" />
+    <ClCompile Include="Code\Include\constants.cpp" />
+    <ClCompile Include="Code\download_data.cpp" />
+    <ClCompile Include="Code\Include\get_test_bounds.cpp" />
+    <ClCompile Include="Code\Include\angle_conversions.cpp" />
+    <ClCompile Include="Code\Include\extract_polygons.cpp" />
+    <ClCompile Include="Code\calculate_coverage.cpp" />
+    <ClCompile Include="Code\Include\calculate_distance.cpp" />
+    <ClCompile Include="Code\Include\remove_concave_corners.cpp" />
+    <ClCompile Include="Code\Include\station_coordinates.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="check_if_inside.h" />
-    <ClInclude Include="constants.h" />
-    <ClInclude Include="get_api_data.h" />
-    <ClInclude Include="get_test_bounds.h" />
-    <ClInclude Include="angle_conversions.h" />
-    <ClInclude Include="calculate_distance.h" />
-    <ClInclude Include="extract_polygons.h" />
-    <ClInclude Include="remove_concave_corners.h" />
-    <ClInclude Include="Structs\polygon.h" />
-    <ClInclude Include="Structs\index.h" />
-    <ClInclude Include="Structs\point.h" />
-    <ClInclude Include="station_coordinates.h" />
-    <ClInclude Include="point_map.h" />
+    <ClInclude Include="Code\Include\check_if_inside.h" />
+    <ClInclude Include="Code\Include\constants.h" />
+    <ClInclude Include="Code\Include\get_api_data.h" />
+    <ClInclude Include="Code\Include\get_test_bounds.h" />
+    <ClInclude Include="Code\Include\angle_conversions.h" />
+    <ClInclude Include="Code\Include\calculate_distance.h" />
+    <ClInclude Include="Code\Include\extract_polygons.h" />
+    <ClInclude Include="Code\Include\remove_concave_corners.h" />
+    <ClInclude Include="Code\Include\Structs\polygon.h" />
+    <ClInclude Include="Code\Include\Structs\index.h" />
+    <ClInclude Include="Code\Include\Structs\point.h" />
+    <ClInclude Include="Code\Include\station_coordinates.h" />
+    <ClInclude Include="Code\Include\point_map.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,96 +15,84 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="get_api_data.cpp">
+    <ClCompile Include="Code\Include\get_api_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="point_map.cpp">
+    <ClCompile Include="Code\Include\point_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="constants.cpp">
+    <ClCompile Include="Code\Include\constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main_download_data.cpp">
+    <ClCompile Include="Code\download_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="station_coordinates.cpp">
+    <ClCompile Include="Code\Include\station_coordinates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="get_test_bounds.cpp">
+    <ClCompile Include="Code\Include\get_test_bounds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="angle_conversions.cpp">
+    <ClCompile Include="Code\Include\angle_conversions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="extract_polygons.cpp">
+    <ClCompile Include="Code\Include\extract_polygons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main_calculate_coverage.cpp">
+    <ClCompile Include="Code\calculate_coverage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="calculate_distance.cpp">
+    <ClCompile Include="Code\Include\calculate_distance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main_clean_isochrones.cpp">
+    <ClCompile Include="Code\clean_isochrones.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MathStuff\PolygonAlgos\check_if_inside.cpp">
+    <ClCompile Include="Code\Include\check_if_inside.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MathStuff\PolygonAlgos\remove_concave_corners.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="check_if_inside.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="remove_concave_corners.cpp">
+    <ClCompile Include="Code\Include\remove_concave_corners.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.h">
+    <ClInclude Include="Code\Include\constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="point_map.h">
+    <ClInclude Include="Code\Include\point_map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="get_api_data.h">
+    <ClInclude Include="Code\Include\get_api_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="station_coordinates.h">
+    <ClInclude Include="Code\Include\station_coordinates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="get_test_bounds.h">
+    <ClInclude Include="Code\Include\get_test_bounds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="angle_conversions.h">
+    <ClInclude Include="Code\Include\angle_conversions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="calculate_distance.h">
+    <ClInclude Include="Code\Include\calculate_distance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Structs\point.h">
+    <ClInclude Include="Code\Include\Structs\point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Structs\index.h">
+    <ClInclude Include="Code\Include\Structs\index.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="extract_polygons.h">
+    <ClInclude Include="Code\Include\extract_polygons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Structs\polygon.h">
+    <ClInclude Include="Code\Include\Structs\polygon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MathStuff\PolygonAlgos\check_if_inside.h">
+    <ClInclude Include="Code\Include\check_if_inside.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MathStuff\PolygonAlgos\remove_concave_corners.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="check_if_inside.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="remove_concave_corners.h">
+    <ClInclude Include="Code\Include\remove_concave_corners.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

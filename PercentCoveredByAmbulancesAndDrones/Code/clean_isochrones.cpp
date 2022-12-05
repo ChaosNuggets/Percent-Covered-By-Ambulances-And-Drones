@@ -1,6 +1,6 @@
 //// Removes the concave corners from the isochrones and outputs the new isochrones to the ConvexIsochrones folder
-//#include "extract_polygons.h"
-//#include "remove_concave_corners.h"
+//#include "Include/extract_polygons.h"
+//#include "Include/remove_concave_corners.h"
 //#include <fstream>
 //#include <string>
 //
@@ -12,7 +12,7 @@
 //    return filePath;
 //}
 //
-//static void writePolygons()
+//static void savePolygons()
 //{
 //    for (int i = 0; i < isochrones.size(); i++)
 //    {
@@ -35,5 +35,5 @@
 //{
 //    extractPolygons();
 //    removeConcaveCorners(isochrones);
-//    writePolygons();
+//    savePolygons();
 //}
