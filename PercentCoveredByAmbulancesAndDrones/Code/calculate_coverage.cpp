@@ -24,7 +24,7 @@ static void changeAmbulancePoints(const int stationNum)
     {
         for (int j = lowLongIndex; j <= highLongIndex; j++)
         {
-            if (pointMap[i][j] == OUTSIDE)
+            if (pointMap[i][j] == OUTSIDE || pointMap[i][j] == COVERED_BY_AMBULANCE || pointMap[i][j] == COVERED_BY_BOTH)
             {
                 continue;
             }
@@ -65,7 +65,7 @@ static void changeDronePoints(const int stationNum, const double droneBoxRadius)
     {
         for (int j = lowLongIndex; j <= highLongIndex; j++)
         {
-            if (pointMap[i][j] == OUTSIDE)
+            if (pointMap[i][j] == OUTSIDE || pointMap[i][j] == COVERED_BY_DRONE || pointMap[i][j] == COVERED_BY_BOTH)
             {
                 continue;
             }
