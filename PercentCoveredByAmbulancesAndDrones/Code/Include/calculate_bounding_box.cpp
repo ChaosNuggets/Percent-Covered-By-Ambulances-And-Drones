@@ -3,7 +3,7 @@
 #include "point_map.h"
 #include "constants.h"
 #include "angle_conversions.h"
-#include "get_test_bounds.h"
+#include "calculate_bounding_box.h"
 
 double calcCoordLong(const Point& coordinate, const double distance)
 {
@@ -28,7 +28,7 @@ constexpr double calcCoordLat(const Point& coordinate, const double distance)
     return coordinate.lat + difference;
 }
 
-static std::pair<Point, Point> getTestCoordinateBounds(const Point& stationCoordinate, const double boxRadius)
+static std::pair<Point, Point> calculateCoordinateBoundingBox(const Point& stationCoordinate, const double boxRadius)
 {
     const double highLat = calcCoordLat(stationCoordinate, boxRadius);
     const double lowLat = calcCoordLat(stationCoordinate, -boxRadius);
@@ -38,10 +38,10 @@ static std::pair<Point, Point> getTestCoordinateBounds(const Point& stationCoord
 }
 
 // Returns the corners of the rectangles of the indexes you should test
-std::pair<Index, Index> getTestIndexBounds(const Point& stationCoordinate, const double boxRadius)
+std::pair<Index, Index> calculateIndexBoundingBox(const Point& stationCoordinate, const double boxRadius)
 {
     //Extract the corners from the coordinate bounds
-    const auto [lowCorner, highCorner] = getTestCoordinateBounds(stationCoordinate, boxRadius);
+    const auto [lowCorner, highCorner] = calculateCoordinateBoundingBox(stationCoordinate, boxRadius);
 
     //Calculate the index bounds
     auto [lowLat, lowLong] = coordToIndex(lowCorner, floor);

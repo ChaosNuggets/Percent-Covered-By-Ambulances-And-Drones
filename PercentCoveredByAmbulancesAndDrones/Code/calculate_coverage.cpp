@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include "Include/station_coordinates.h"
-#include "Include/get_test_bounds.h"
+#include "Include/calculate_bounding_box.h"
 #include "Include/constants.h"
 #include "Include/point_map.h"
 #include "Include/extract_polygons.h"
@@ -16,7 +16,7 @@
 static void changeAmbulancePoints(const int stationNum)
 {
     // Extract the indexes of the box corners
-    const auto [lowCorner, highCorner] = getTestIndexBounds(stationCoordinates[stationNum], AMBULANCE_BOX_RADIUS);
+    const auto [lowCorner, highCorner] = calculateIndexBoundingBox(stationCoordinates[stationNum], AMBULANCE_BOX_RADIUS);
     const auto [lowLatIndex, lowLongIndex] = lowCorner;
     const auto [highLatIndex, highLongIndex] = highCorner;
 
@@ -57,7 +57,7 @@ static void changeAmbulancePoints()
 static void changeDronePoints(const int stationNum, const double droneBoxRadius)
 {
     // Extract the indexes of the box corners
-    const auto [lowCorner, highCorner] = getTestIndexBounds(stationCoordinates[stationNum], droneBoxRadius);
+    const auto [lowCorner, highCorner] = calculateIndexBoundingBox(stationCoordinates[stationNum], droneBoxRadius);
     const auto [lowLatIndex, lowLongIndex] = lowCorner;
     const auto [highLatIndex, highLongIndex] = highCorner;
 
@@ -211,7 +211,7 @@ int main()
         changeDronePoints(droneSpeed);
         const auto [coverage, pointsCovered, pointsTotal] = calculateCoverage();
         printCoverage(droneSpeed, coverage, pointsCovered, pointsTotal);
-        savePoints(droneSpeed);
+        //savePoints(droneSpeed);
     }
 
     return 0;

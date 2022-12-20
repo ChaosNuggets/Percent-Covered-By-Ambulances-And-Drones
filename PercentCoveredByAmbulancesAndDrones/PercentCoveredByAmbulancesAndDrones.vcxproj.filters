@@ -30,7 +30,7 @@
     <ClCompile Include="Code\Include\station_coordinates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Include\get_test_bounds.cpp">
+    <ClCompile Include="Code\Include\calculate_bounding_box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\Include\angle_conversions.cpp">
@@ -68,7 +68,7 @@
     <ClInclude Include="Code\Include\station_coordinates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\get_test_bounds.h">
+    <ClInclude Include="Code\Include\calculate_bounding_box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\angle_conversions.h">

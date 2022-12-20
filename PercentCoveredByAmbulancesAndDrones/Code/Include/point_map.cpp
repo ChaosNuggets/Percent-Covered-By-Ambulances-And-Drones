@@ -1,7 +1,7 @@
 #define _USE_MATH_DEFINES
 #include "point_map.h"
 #include "constants.h"
-#include "get_test_bounds.h"
+#include "calculate_bounding_box.h"
 #include "calculate_distance.h"
 #include "check_if_inside.h"
 #include <cmath>
