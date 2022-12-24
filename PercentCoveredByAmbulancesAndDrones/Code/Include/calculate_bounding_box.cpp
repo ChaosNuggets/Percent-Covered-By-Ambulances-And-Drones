@@ -38,7 +38,7 @@ static std::pair<Point, Point> calculateCoordinateBoundingBox(const Point& stati
 }
 
 // Returns the corners of the rectangles of the indexes you should test
-std::pair<Index, Index> calculateIndexBoundingBox(const Point& stationCoordinate, const double boxRadius)
+std::pair<Index, Index> calculateBoundingBox(const Point& stationCoordinate, const double boxRadius)
 {
     //Extract the corners from the coordinate bounds
     const auto [lowCorner, highCorner] = calculateCoordinateBoundingBox(stationCoordinate, boxRadius);

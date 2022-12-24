@@ -7,6 +7,6 @@
 
 double calcCoordLong(const Point& coordinate, const double distance);
 constexpr double calcCoordLat(const Point& coordinate, const double distance);
-std::pair<Index, Index> calculateIndexBoundingBox(const Point& stationCoordinate, const double boxRadius);
+std::pair<Index, Index> calculateBoundingBox(const Point& stationCoordinate, const double boxRadius);
 
 #endif
