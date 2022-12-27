@@ -6,18 +6,21 @@
 #include "Structs/point.h"
 #include "Structs/index.h"
 
-typedef double (*funcPtr)(double);
+typedef std::vector<std::vector<uint8_t>> PointMap;
 
-extern std::vector<std::vector<uint8_t>> pointMap;
-
-Index coordToIndex(const Point& coordinate, funcPtr roundFunc = round);
+Index coordToIndex(const Point& coordinate, double (*roundFunc)(double) = round);
 Point indexToCoord(const Index& index);
-void fillPointMap();
+PointMap createPointMap();
 
-const extern int OUTSIDE;
-const extern int NOT_COVERED;
-const extern int COVERED_BY_AMBULANCE;
-const extern int COVERED_BY_DRONE;
-const extern int COVERED_BY_BOTH;
+// What a value represents in the point map
+const int OUTSIDE = 0;
+const int NOT_COVERED = 1;
+const int COVERED_BY_AMBULANCE = 2;
+const int COVERED_BY_DRONE = 3;
+const int COVERED_BY_BOTH = 4;
+
+const extern double LAT_IN_1_MILE;
+const extern int LAT_SIZE;
+const extern int LONG_SIZE;
 
 #endif

@@ -6,8 +6,6 @@
 #include <string>
 #include "extract_polygons.h"
 
-std::vector<Polygon> isochrones;
-
 static std::string generateReadFilePath(const int stationNum)
 {
 	std::string filePath = "RawData/";
@@ -80,10 +78,12 @@ static Polygon extractPolygon(const int stationNum)
 	return polygon;
 }
 
-void extractPolygons()
+std::vector<Polygon> extractPolygons()
 {
+	std::vector<Polygon> isochrones;
 	for (int i = 0; i < stationCoordinates.size(); i++)
 	{
 		isochrones.push_back(extractPolygon(i));
 	}
+	return isochrones;
 }

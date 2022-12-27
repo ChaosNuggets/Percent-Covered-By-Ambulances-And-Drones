@@ -21,9 +21,6 @@
     <ClCompile Include="Code\Include\point_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Include\constants.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Code\download_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,7 +53,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Code\Include\constants.h">
+    <ClInclude Include="Code\Include\max_time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\point_map.h">

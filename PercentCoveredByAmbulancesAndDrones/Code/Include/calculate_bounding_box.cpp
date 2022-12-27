@@ -1,7 +1,6 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include "point_map.h"
-#include "constants.h"
 #include "angle_conversions.h"
 #include "calculate_bounding_box.h"
 

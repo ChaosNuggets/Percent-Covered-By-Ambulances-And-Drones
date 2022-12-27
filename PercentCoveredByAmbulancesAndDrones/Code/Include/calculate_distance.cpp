@@ -1,6 +1,5 @@
 #include "angle_conversions.h"
 #include <cmath>
-#include "constants.h"
 #include "calculate_distance.h"
 #define _USE_MATH_DEFINES
 
@@ -22,8 +21,8 @@ static long double calculateDistanceL(const std::pair<long double, long double>&
 	long2 = toRadians(long2);
 
 	// Haversine Formula
-	long double dlong = long2 - long1;
-	long double dlat = lat2 - lat1;
+	const long double dlong = long2 - long1;
+	const long double dlat = lat2 - lat1;
 
 	long double ans = pow(sin(dlat / 2), 2) +
 		cos(lat1) * cos(lat2) *
@@ -32,8 +31,8 @@ static long double calculateDistanceL(const std::pair<long double, long double>&
 	ans = 2 * asin(sqrt(ans));
 
 	// Radius of Earth in
-	// Miles, R = 3956
-	long double R = EARTH_RADIUS;
+	// Miles, R = 3959
+	const long double R = 3959;
 
 	// Calculate the result
 	ans = ans * R;

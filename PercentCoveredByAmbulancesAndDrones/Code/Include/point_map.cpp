@@ -1,22 +1,22 @@
 #define _USE_MATH_DEFINES
 #include "point_map.h"
-#include "constants.h"
 #include "calculate_bounding_box.h"
 #include "calculate_distance.h"
 #include "check_if_inside.h"
 #include <cmath>
 #include <stdint.h>
 
-std::vector<std::vector<uint8_t>> pointMap; // The point map, true if active and false if not active (all the points in Indiana start as true)
+const double LOWEST_LAT = 37.779567; // Lowest latitude that I have in the point map
+const double LOWEST_LONG = -88.057587; // Lowest longitude that I have in the point map
+const double HIGHEST_LAT = 41.760356; // Highest latitude that I have in the point map
+const double HIGHEST_LONG = -84.805966; // Highest longitude that I have in the point map
+const double LONG_IN_1_MILE = 0.01836529538; // Longitude per mile at LOWEST_LAT
+const double LAT_IN_1_MILE = 0.01447228581; // Latitude per mile
+const double MILES_BETWEEN_POINTS = 0.25; // Controls the density of the point map
+const int LAT_SIZE = ceil((HIGHEST_LAT - LOWEST_LAT) / (LAT_IN_1_MILE * MILES_BETWEEN_POINTS)) + 1; // Vertical size of pointMap matrix
+const int LONG_SIZE = ceil((HIGHEST_LONG - LOWEST_LONG) / (LONG_IN_1_MILE * MILES_BETWEEN_POINTS)) + 1; // Horizontal size of pointMap matrix
 
-// What a value represents in the point map
-const int OUTSIDE = 0;
-const int NOT_COVERED = 1;
-const int COVERED_BY_AMBULANCE = 2;
-const int COVERED_BY_DRONE = 3;
-const int COVERED_BY_BOTH = 4;
-
-Index coordToIndex(const Point& coordinate, funcPtr roundFunc)
+Index coordToIndex(const Point& coordinate, double (*roundFunc)(double))
 {
     const auto& [latitude, longitude] = coordinate; // Extract data
 
@@ -53,8 +53,10 @@ Point indexToCoord(const Index& index)
     return { latitude, longitude };
 }
 
-void fillPointMap()
+std::vector<std::vector<uint8_t>> createPointMap()
 {
+    std::vector<std::vector<uint8_t>> pointMap;
+
     // Resizes pointMap to be a 2d matrix of points of size latSize by longSize
     pointMap.resize(LAT_SIZE, std::vector<uint8_t>(LONG_SIZE, OUTSIDE));
 
@@ -96,4 +98,6 @@ void fillPointMap()
             }
         }
     }
+
+    return pointMap;
 }

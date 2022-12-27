@@ -5,7 +5,7 @@
 #include <fstream>
 #include "Include/station_coordinates.h"
 #include "Include/calculate_bounding_box.h"
-#include "Include/constants.h"
+#include "Include/max_time.h"
 #include "Include/point_map.h"
 #include "Include/extract_polygons.h"
 #include "Include/check_if_inside.h"
@@ -13,10 +13,12 @@
 #include "Include/calculate_distance.h"
 #include <cmath>
 
-static void changeAmbulancePoints(const int stationNum)
+const long double MINUTES_IN_1_HOUR = 60; // Self explanatory
+
+static void changeAmbulancePoints(PointMap& pointMap, const std::vector<Polygon>& isochrones, const int stationNum, const double ambulanceBoxRadius)
 {
     // Extract the indexes of the box corners
-    const auto [lowCorner, highCorner] = calculateBoundingBox(stationCoordinates[stationNum], AMBULANCE_BOX_RADIUS);
+    const auto [lowCorner, highCorner] = calculateBoundingBox(stationCoordinates[stationNum], ambulanceBoxRadius);
     const auto [lowLatIndex, lowLongIndex] = lowCorner;
     const auto [highLatIndex, highLongIndex] = highCorner;
 
@@ -46,15 +48,18 @@ static void changeAmbulancePoints(const int stationNum)
     }
 }
 
-static void changeAmbulancePoints()
+static void changeAmbulancePoints(PointMap& pointMap, const std::vector<Polygon>& isochrones)
 {
+    const int MAX_SPEED = 70; // Max speed the ambulance can go in mph
+    const double ambulanceBoxRadius = MAX_SPEED * (MAX_TIME / MINUTES_IN_1_HOUR); // 1/2 of the side length of the box around each police station (in miles)
+
     for (int i = 0; i < stationCoordinates.size(); i++)
     {
-        changeAmbulancePoints(i);
+        changeAmbulancePoints(pointMap, isochrones, i, ambulanceBoxRadius);
     }
 }
 
-static void changeDronePoints(const int stationNum, const double droneBoxRadius)
+static void changeDronePoints(PointMap& pointMap, const int stationNum, const double droneBoxRadius)
 {
     // Extract the indexes of the box corners
     const auto [lowCorner, highCorner] = calculateBoundingBox(stationCoordinates[stationNum], droneBoxRadius);
@@ -88,17 +93,18 @@ static void changeDronePoints(const int stationNum, const double droneBoxRadius)
     }
 }
 
-static void changeDronePoints(const double droneSpeed)
+static void changeDronePoints(PointMap& pointMap, const double droneSpeed)
 {
     double droneBoxRadius = droneSpeed * (MAX_TIME / MINUTES_IN_1_HOUR);
 
     for (int i = 0; i < stationCoordinates.size(); i++)
     {
-        changeDronePoints(i, droneBoxRadius);
+        changeDronePoints(pointMap, i, droneBoxRadius);
     }
 }
 
-static std::tuple<long double, int, int> calculateCoverage()
+// Returns the coverage, the number of points covered, and the total number of points
+static std::tuple<long double, int, int> calculateCoverage(const PointMap& pointMap)
 {
     int pointsCovered = 0;
     int pointsTotal = 0;
@@ -145,7 +151,7 @@ static std::string generateFilePath(const int droneSpeed)
     return "Points/" + std::to_string(droneSpeed) + "mph.csv";
 }
 
-static void savePoints(const double droneSpeed)
+static void savePoints(const PointMap& pointMap, const double droneSpeed)
 {
     std::ofstream fout(generateFilePath(round(droneSpeed)));
     // Write the header
@@ -166,7 +172,7 @@ static void savePoints(const double droneSpeed)
     fout.close();
 }
 
-static void printPointMap()
+static void printPointMap(const PointMap& pointMap)
 {
     for (int i = pointMap.size() - 1; i >= 0; i--)
     {
@@ -199,19 +205,20 @@ static void printPointMap()
 
 int main()
 {
-    extractPolygons();
+    std::vector<Polygon> isochrones = extractPolygons();
     removeConcaveCorners(isochrones);
-    fillPointMap();
 
-    changeAmbulancePoints();
+    PointMap pointMap = createPointMap();
+
+    changeAmbulancePoints(pointMap, isochrones);
 
     // Drone speed is in mph
     for (double droneSpeed = 0; droneSpeed <= 200; droneSpeed += 5)
     {
-        changeDronePoints(droneSpeed);
-        const auto [coverage, pointsCovered, pointsTotal] = calculateCoverage();
+        changeDronePoints(pointMap, droneSpeed);
+        const auto [coverage, pointsCovered, pointsTotal] = calculateCoverage(pointMap);
         printCoverage(droneSpeed, coverage, pointsCovered, pointsTotal);
-        savePoints(droneSpeed);
+        savePoints(pointMap, droneSpeed);
     }
 
     return 0;

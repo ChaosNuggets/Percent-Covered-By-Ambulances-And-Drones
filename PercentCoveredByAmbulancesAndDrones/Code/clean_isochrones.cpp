@@ -12,7 +12,7 @@
 //    return filePath;
 //}
 //
-//static void savePolygons()
+//static void savePolygons(const std::vector<Polygon> isochrones)
 //{
 //    for (int i = 0; i < isochrones.size(); i++)
 //    {
@@ -33,7 +33,9 @@
 //
 //int main()
 //{
-//    extractPolygons();
+//    std::vector<Polygon> isochrones = extractPolygons();
 //    removeConcaveCorners(isochrones);
-//    savePolygons();
+//    savePolygons(isochrones);
+//
+//    return 0;
 //}

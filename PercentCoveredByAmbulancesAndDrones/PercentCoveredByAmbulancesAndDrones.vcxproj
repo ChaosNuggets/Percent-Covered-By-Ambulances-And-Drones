@@ -143,7 +143,6 @@
     <ClCompile Include="Code\Include\get_api_data.cpp" />
     <ClCompile Include="Code\clean_isochrones.cpp" />
     <ClCompile Include="Code\Include\point_map.cpp" />
-    <ClCompile Include="Code\Include\constants.cpp" />
     <ClCompile Include="Code\download_data.cpp" />
     <ClCompile Include="Code\Include\calculate_bounding_box.cpp" />
     <ClCompile Include="Code\Include\angle_conversions.cpp" />
@@ -155,7 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\check_if_inside.h" />
-    <ClInclude Include="Code\Include\constants.h" />
+    <ClInclude Include="Code\Include\max_time.h" />
     <ClInclude Include="Code\Include\get_api_data.h" />
     <ClInclude Include="Code\Include\calculate_bounding_box.h" />
     <ClInclude Include="Code\Include\angle_conversions.h" />
