@@ -51,6 +51,9 @@
     <ClCompile Include="Code\Include\remove_concave_corners.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Include\indiana_border.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\max_time.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\remove_concave_corners.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\indiana_border.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

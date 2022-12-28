@@ -142,6 +142,7 @@
     <ClCompile Include="Code\Include\check_if_inside.cpp" />
     <ClCompile Include="Code\Include\get_api_data.cpp" />
     <ClCompile Include="Code\clean_isochrones.cpp" />
+    <ClCompile Include="Code\Include\indiana_border.cpp" />
     <ClCompile Include="Code\Include\point_map.cpp" />
     <ClCompile Include="Code\download_data.cpp" />
     <ClCompile Include="Code\Include\calculate_bounding_box.cpp" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\check_if_inside.h" />
+    <ClInclude Include="Code\Include\indiana_border.h" />
     <ClInclude Include="Code\Include\max_time.h" />
     <ClInclude Include="Code\Include\get_api_data.h" />
     <ClInclude Include="Code\Include\calculate_bounding_box.h" />
