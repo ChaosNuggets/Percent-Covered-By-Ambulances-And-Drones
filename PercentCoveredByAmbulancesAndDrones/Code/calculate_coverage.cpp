@@ -218,7 +218,6 @@ int main()
         changeDronePoints(pointMap, droneSpeed);
         const auto [coverage, pointsCovered, pointsTotal] = calculateCoverage(pointMap);
         printCoverage(droneSpeed, coverage, pointsCovered, pointsTotal);
-        savePoints(pointMap, droneSpeed);
     }
 
     return 0;
