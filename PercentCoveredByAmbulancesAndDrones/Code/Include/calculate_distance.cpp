@@ -6,6 +6,10 @@
 // C++ program to calculate Distance
 // Between Two Points on Earth
 
+// Radius of Earth in
+// Miles, R = 3959
+const long double EARTH_RADIUS = 3959;
+
 static long double calculateDistanceL(const std::pair<long double, long double>& coord1, const std::pair<long double, long double>& coord2)
 {
 	// Extract data
@@ -30,12 +34,8 @@ static long double calculateDistanceL(const std::pair<long double, long double>&
 
 	ans = 2 * asin(sqrt(ans));
 
-	// Radius of Earth in
-	// Miles, R = 3959
-	const long double R = 3959;
-
 	// Calculate the result
-	ans = ans * R;
+	ans = ans * EARTH_RADIUS;
 
 	return ans;
 }

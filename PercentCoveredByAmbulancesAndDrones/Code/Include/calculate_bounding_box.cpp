@@ -3,6 +3,7 @@
 #include "point_map.h"
 #include "angle_conversions.h"
 #include "calculate_bounding_box.h"
+#include "calculate_distance.h"
 
 double calcCoordLong(const Point& coordinate, const double distance)
 {
@@ -13,7 +14,7 @@ double calcCoordLong(const Point& coordinate, const double distance)
     longitude = toRadians(longitude);
 
     // Stupid formula
-    double difference = acos((cos(distance / 3963) - pow(sin(latitude), 2)) / pow(cos(latitude), 2));
+    double difference = acos((cos(distance / EARTH_RADIUS) - pow(sin(latitude), 2)) / pow(cos(latitude), 2));
 
     // Make difference negative if distance is negative
     if (distance < 0) difference *= -1;
@@ -21,9 +22,9 @@ double calcCoordLong(const Point& coordinate, const double distance)
     return toDegrees(longitude + difference);
 }
 
-constexpr double calcCoordLat(const Point& coordinate, const double distance)
+double calcCoordLat(const Point& coordinate, const double distance)
 {
-    const double difference = distance * LAT_IN_1_MILE; // Not stupid formula
+    const double difference = toDegrees(distance / EARTH_RADIUS); // Not stupid formula
     return coordinate.lat + difference;
 }
 

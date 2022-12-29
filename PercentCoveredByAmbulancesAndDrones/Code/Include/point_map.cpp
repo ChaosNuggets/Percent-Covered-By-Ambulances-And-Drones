@@ -8,13 +8,13 @@
 #include "indiana_border.h"
 #include <algorithm>
 
+const double MILES_BETWEEN_POINTS = 0.25; // Controls the density of the point map
 const double LOWEST_LAT = std::min_element(indianaBorder.begin(), indianaBorder.end(), [](const Point& a, const Point& b) { return a.lat < b.lat; })->lat; // Lowest latitude that I have in the point map
 const double LOWEST_LONG = std::min_element(indianaBorder.begin(), indianaBorder.end(), [](const Point& a, const Point& b) { return a.lon < b.lon; })->lon; // Lowest longitude that I have in the point map
 const double HIGHEST_LAT = std::max_element(indianaBorder.begin(), indianaBorder.end(), [](const Point& a, const Point& b) { return a.lat < b.lat; })->lat; // Highest latitude that I have in the point map
 const double HIGHEST_LONG = std::max_element(indianaBorder.begin(), indianaBorder.end(), [](const Point& a, const Point& b) { return a.lon < b.lon; })->lon; // Highest longitude that I have in the point map
-const double LONG_IN_1_MILE = 0.01836529538; // Longitude per mile at LOWEST_LAT
-const double LAT_IN_1_MILE = 0.01447228581; // Latitude per mile
-const double MILES_BETWEEN_POINTS = 1; // Controls the density of the point map
+const double LONG_IN_1_MILE = calcCoordLong({ LOWEST_LAT, 0 }, 1); // Longitude per mile at LOWEST_LAT
+const double LAT_IN_1_MILE = calcCoordLat({ 0, 0 }, 1); // Latitude per mile
 const int LAT_SIZE = ceil((HIGHEST_LAT - LOWEST_LAT) / (LAT_IN_1_MILE * MILES_BETWEEN_POINTS)) + 1; // Vertical size of pointMap matrix
 const int LONG_SIZE = ceil((HIGHEST_LONG - LOWEST_LONG) / (LONG_IN_1_MILE * MILES_BETWEEN_POINTS)) + 1; // Horizontal size of pointMap matrix
 
