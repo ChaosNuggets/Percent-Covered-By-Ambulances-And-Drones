@@ -3,6 +3,8 @@
 
 #define CURL_STATICLIB
 #include <curl/curl.h>
+#include <chrono>
+#include <thread>
 
 void promptForAPIKey(std::string& apiKey)
 {
@@ -25,7 +27,7 @@ static bool initializeCurl(CURL*& curl)
     curl = curl_easy_init();
     if (!curl) // If initialization failed
     {
-        std::cout << "Curl initialization failed";
+        std::cout << "Curl initialization failed\n";
         return false;
     }
     return true;
@@ -36,7 +38,7 @@ static bool openFile(FILE*& filePtr, const std::string& filePath)
     errno_t error = fopen_s(&filePtr, filePath.c_str(), "wb"); // wb stands for write binary
     if (error != 0)
     {
-        std::cout << "File opening failed";
+        std::cout << "File opening failed\n";
         return false;
     }
     return true;
@@ -61,10 +63,30 @@ static bool performCurlAction(CURL* curl)
     result = curl_easy_perform(curl);
     if (result != CURLE_OK)
     {
-        std::cout << "download problem: " << curl_easy_strerror(result);
+        std::cout << "download problem: " << curl_easy_strerror(result) << '\n';
         return false;
     }
     return true;
+}
+
+static void repeatedlyPerformCurlAction(CURL* curl)
+{
+    const int printTime = 5;
+	int retryTime = printTime; // retry time in seconds
+    bool performSuccess;
+    do
+    {
+        performSuccess = performCurlAction(curl);
+        if (!performSuccess)
+        {
+            for (int i = 0; i < retryTime / printTime; i++)
+            {
+				std::cout << "retrying in " << retryTime - i * printTime << " seconds\n";
+				std::this_thread::sleep_for(std::chrono::seconds(printTime));
+            }
+            retryTime *= 2;
+		}
+    } while (!performSuccess);
 }
 
 bool doCurlStuff(const std::string& URL, std::string& filePath)
@@ -86,15 +108,11 @@ bool doCurlStuff(const std::string& URL, std::string& filePath)
 
     setUpOptions(curl, URL, filePtr);
 
-    bool performSuccess = performCurlAction(curl);
-    if (!performSuccess)
-    {
-        return false;
-    }
-
+    repeatedlyPerformCurlAction(curl);
+    
     if (fclose(filePtr))
     {
-        std::cout << "file close error";
+        std::cout << "file close error\n";
         return false;
     }
     curl_easy_cleanup(curl);
