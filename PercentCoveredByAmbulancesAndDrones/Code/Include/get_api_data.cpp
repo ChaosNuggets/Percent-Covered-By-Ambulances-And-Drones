@@ -69,7 +69,7 @@ static bool performCurlAction(CURL* curl)
     return true;
 }
 
-static void repeatedlyPerformCurlAction(CURL* curl)
+static void performCurlActionWithRetry(CURL* curl)
 {
     const int printTime = 5;
 	int retryTime = printTime; // retry time in seconds
@@ -108,7 +108,7 @@ bool doCurlStuff(const std::string& URL, std::string& filePath)
 
     setUpOptions(curl, URL, filePtr);
 
-    repeatedlyPerformCurlAction(curl);
+    performCurlActionWithRetry(curl);
     
     if (fclose(filePtr))
     {
