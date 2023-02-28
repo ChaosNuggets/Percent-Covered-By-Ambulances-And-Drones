@@ -8,7 +8,7 @@
 #include "indiana_border.h"
 #include <algorithm>
 
-const double MILES_BETWEEN_POINTS = 0.25; // Controls the density of the point map
+const double MILES_BETWEEN_POINTS = 0.1; // Controls the density of the point map
 const double LOWEST_LAT = std::min_element(indianaBorder.begin(), indianaBorder.end(), [](const Point& a, const Point& b) { return a.lat < b.lat; })->lat; // Lowest latitude that I have in the point map
 const double LOWEST_LONG = std::min_element(indianaBorder.begin(), indianaBorder.end(), [](const Point& a, const Point& b) { return a.lon < b.lon; })->lon; // Lowest longitude that I have in the point map
 const double HIGHEST_LAT = std::max_element(indianaBorder.begin(), indianaBorder.end(), [](const Point& a, const Point& b) { return a.lat < b.lat; })->lat; // Highest latitude that I have in the point map
