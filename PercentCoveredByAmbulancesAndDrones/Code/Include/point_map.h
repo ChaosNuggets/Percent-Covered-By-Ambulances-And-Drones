@@ -1,5 +1,4 @@
-#ifndef POINTS_H
-#define POINTS_H
+#pragma once
 
 #include <utility>
 #include <vector>
@@ -22,5 +21,3 @@ const int COVERED_BY_BOTH = 4;
 const extern double LAT_IN_1_MILE;
 const extern int LAT_SIZE;
 const extern int LONG_SIZE;
-
-#endif

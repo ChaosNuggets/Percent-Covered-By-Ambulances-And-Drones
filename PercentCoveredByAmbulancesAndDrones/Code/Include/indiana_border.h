@@ -1,8 +1,5 @@
-#ifndef INDIANA_BORDER_H
-#define INDIANA_BORDER_H
+#pragma once
 
 #include "Structs/polygon.h"
 
 const extern Polygon indianaBorder;
-
-#endif

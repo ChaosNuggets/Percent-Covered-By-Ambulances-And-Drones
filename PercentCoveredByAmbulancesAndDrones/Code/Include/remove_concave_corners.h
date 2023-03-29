@@ -1,8 +1,5 @@
-#ifndef REMOVE_CONCAVE_CORNERS_H
-#define REMOVE_CONCAVE_CORNERS_H
+#pragma once
 
 #include "Structs/polygon.h"
 
 void removeConcaveCorners(std::vector<Polygon>& polygons);
-
-#endif

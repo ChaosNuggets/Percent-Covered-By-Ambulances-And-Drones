@@ -153,6 +153,7 @@
     <ClCompile Include="Code\Include\calculate_distance.cpp" />
     <ClCompile Include="Code\Include\remove_concave_corners.cpp" />
     <ClCompile Include="Code\Include\station_coordinates.cpp" />
+    <ClCompile Include="Code\Include\overdose_points.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\check_if_inside.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Code\Include\angle_conversions.h" />
     <ClInclude Include="Code\Include\calculate_distance.h" />
     <ClInclude Include="Code\Include\extract_polygons.h" />
+    <ClInclude Include="Code\Include\overdose_points.h" />
     <ClInclude Include="Code\Include\remove_concave_corners.h" />
     <ClInclude Include="Code\Include\Structs\polygon.h" />
     <ClInclude Include="Code\Include\Structs\index.h" />

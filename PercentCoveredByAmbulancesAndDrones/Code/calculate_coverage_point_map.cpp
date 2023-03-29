@@ -76,7 +76,7 @@ static void changeDronePoints(PointMap& pointMap, const int stationNum, const do
             }
 
             Point testPoint = indexToCoord({ i, j });
-            const float distance = calculateDistance(testPoint, stationCoordinates[stationNum]);
+            const long double distance = calculateDistance(testPoint, stationCoordinates[stationNum]);
 
             if (distance <= droneBoxRadius)
             {

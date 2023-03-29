@@ -1,8 +1,5 @@
-#ifndef INDEX_STRUCT_H
-#define INDEX_STRUCT_H
+#pragma once
 
 struct Index {
 	int lat, lon;
 };
-
-#endif
