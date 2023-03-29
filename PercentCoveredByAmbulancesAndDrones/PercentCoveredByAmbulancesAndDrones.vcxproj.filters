@@ -36,7 +36,7 @@
     <ClCompile Include="Code\Include\extract_polygons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\calculate_coverage.cpp">
+    <ClCompile Include="Code\calculate_coverage_point_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\Include\calculate_distance.cpp">
@@ -52,6 +52,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\Include\indiana_border.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\calculate_coverage_overdose_points.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
