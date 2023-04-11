@@ -55,11 +55,11 @@ Point indexToCoord(const Index& index)
     return { latitude, longitude };
 }
 
-std::vector<std::vector<uint8_t>> createPointMap()
+PointMap createPointMap()
 {
-    std::vector<std::vector<uint8_t>> pointMap;
+    PointMap pointMap;
 
-    // Resizes pointMap to be a 2d matrix of points of size latSize by longSize
+    // Resizes pointMap to be a 2d matrix of points of size latSize by longSize, idk why the constructor just doesn't work sometimes
     pointMap.resize(LAT_SIZE, std::vector<uint8_t>(LONG_SIZE, OUTSIDE));
     
     // Fill the points in pointMap to be spaced less than MILES_BETWEEN_POINTS apart

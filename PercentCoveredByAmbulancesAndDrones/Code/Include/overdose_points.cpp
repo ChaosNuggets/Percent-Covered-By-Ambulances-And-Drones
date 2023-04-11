@@ -1,6 +1,6 @@
 #include "overdose_points.h"
 
-const std::vector<Point> overdose_points = {
+const std::vector<Point> overdosePoints = {
     {41.01191384894564, -85.05662358596015},
     {41.18722911272899, -85.3070715007614},
     {41.05954988388413, -85.2640529131993},
